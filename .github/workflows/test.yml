@@ -1,0 +1,23 @@
+name: PhP Test Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:      
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: docker image build
+        run: docker build -t php-app:1.0 .
+      
+      - name: run docker container
+        run: |
+           docker stop php-app || true
+           docker rm php-app || true
+           docker run -d --name php-app -p 8080:80 php-app:1.0
