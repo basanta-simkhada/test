@@ -1,4 +1,5 @@
 <?php
 
-echo "Hello world\n";
+echo "Hello world!";
+echo "<br>";
 echo "second line";
